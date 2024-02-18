@@ -6,7 +6,7 @@
 <title>Tic Tac Toe</title>
 <style>
   body {
-    background-color: #E8E4C9;
+    background-color: #f8e8d3;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -40,29 +40,36 @@
   }
   .cell.X {
     color: red;
+    font-size: 6em;
+    font-weight: bold;
   }
   .cell.O {
     color: blue;
+    font-size: 6em;
+    font-weight: bold;
   }
   #message-container {
-    font-size: 1.5em;
+    font-size: 20px;
+    font-weight: bold;
     text-align: center;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #FFD700;
+    background-color: #FFFACD;
     padding: 20px;
+    border: 2px solid black;
     border-radius: 10px;
     display: none;
   }
   #reset-button {
     margin-top: 5px;
-    font-size: 16px;
-    padding: 10px 50px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 30px;
     background-color: #4CAF50;
     color: white;
-    border: none;
+    border: 2px solid green;
     border-radius: 5px;
     cursor: pointer;
   }
@@ -87,7 +94,7 @@
 
 <div id="message-container">
   <p id="message"></p>
-  <button id="reset-button" onclick="resetGame()">Reset</button>
+  <button id="reset-button" onclick="resetGame()">Play Again</button>
 </div>
 
 <script>
@@ -112,13 +119,17 @@
       document.getElementById('board').children[cell].innerText = currentPlayer;
       document.getElementById('board').children[cell].classList.add(currentPlayer);
       if (checkWin()) {
-        document.getElementById('message').innerText = `${currentPlayer} wins!`;
-        document.getElementById('message-container').style.display = "block";
-        gameActive = false;
+        setTimeout(() => {
+          document.getElementById('message').innerText = `${currentPlayer} wins!`;
+          document.getElementById('message-container').style.display = "block";
+          gameActive = false;
+        }, 1500);
       } else if (!board.includes("")) {
-        document.getElementById('message').innerText = "It's a tie!";
-        document.getElementById('message-container').style.display = "block";
-        gameActive = false;
+        setTimeout(() => {
+          document.getElementById('message').innerText = "It's a tie!";
+          document.getElementById('message-container').style.display = "block";
+          gameActive = false;
+        }, 1500);
       } else {
         currentPlayer = currentPlayer === "X" ? "O" : "X";
       }
